@@ -1,0 +1,36 @@
+/* Configuração de fonte e cor de destaque da ODS 4 (Índigo) */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f0f4f8;
+  scroll-behavior: smooth;
+}
+
+/* COR PRINCIPAL ODS 4 (ÍNDIGO) */
+.ods-4-bg {
+  background-color: #4f46e5; /* Indigo-600 */
+}
+.ods-4-text {
+  color: #4f46e5;
+}
+.ods-4-border {
+  border-color: #4f46e5;
+}
+
+/* COR DE ACENTO (VERMELHO/LARANJA) para contraste no CTA */
+.cta-bg {
+  background-color: #ef4444; /* Red-500 */
+}
+.cta-hover:hover {
+  background-color: #dc2626; /* Red-600 */
+}
+
+/* Estilos de transição para o acordeão JS */
+.accordion-content {
+  transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+  max-height: 0;
+  opacity: 0;
+}
+.accordion-content.active {
+  max-height: 1000px; /* Valor grande para garantir que o conteúdo caiba */
+  opacity: 1;
+}

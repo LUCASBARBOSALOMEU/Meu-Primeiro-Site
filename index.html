@@ -1,274 +1,571 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#1a468c" />
-    <meta
-      name="description"
-      content="ODS 4: Educação de Qualidade para todos até 2030. Conheça as principais metas para garantir uma educação inclusiva e de qualidade."
-    />
     <title>ODS 4: Educação de Qualidade</title>
-    <link rel="stylesheet" href="educacao-de-qualidade.css" />
-    <link rel="icon" type="image/png" href="img/Logo da Ods 4.jpg" />
+    <!-- Carregamento do Tailwind CSS para estilização rápida e responsiva -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="img/Logo da Ods 4.jpg" />
   </head>
-  <body>
-    <a class="skip-link" href="#main">Pular para o conteúdo</a>
+  <body class="antialiased">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "ods-blue": "#4f46e5",
+            },
+          },
+        },
+      };
 
-    <!-- Cabeçalho -->
-    <header class="cabecalho">
-      <div class="logo">
-        <img src="img/Logo da Ods 4.jpg" alt="Logo ODS 4" class="logo-img" />
-        <span>ODS 4 | Educação de Qualidade</span>
-      </div>
-      <div class="menu">
-        <a href="#sobre">Sobre</a>
-        <a href="#metas">Metas</a>
-        <a href="#acao">Como Ajudar</a>
+      /**
+       * Função para alternar a visibilidade do acordeão.
+       * Garante que apenas um item fique aberto por vez.
+       */
+      function toggleAccordion(element) {
+        const content = element.nextElementSibling;
+        const icon = element.querySelector(".accordion-icon");
+
+        // Fecha todos os outros que não são o clicado
+        document.querySelectorAll(".accordion-content").forEach((item) => {
+          if (item !== content && item.classList.contains("active")) {
+            item.classList.remove("active");
+            item.previousElementSibling
+              .querySelector(".accordion-icon")
+              .classList.remove("rotate-180");
+          }
+        });
+
+        // Abre ou fecha o item clicado
+        if (content.classList.contains("active")) {
+          content.classList.remove("active");
+          icon.classList.remove("rotate-180");
+        } else {
+          content.classList.add("active");
+          icon.classList.add("active");
+          icon.classList.add("rotate-180");
+        }
+      }
+    </script>
+
+    <!-- Cabeçalho (Header) - Fixo e Responsivo -->
+    <header
+      class="sticky top-0 z-50 bg-white shadow-lg border-b border-gray-200"
+    >
+      <div
+        class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <div class="flex items-center space-x-3 logo">
+          <!-- Ícone placeholder para o logo da ODS 4 -->
+          <div
+            class="ods-4-bg w-8 h-8 rounded-full flex items-center justify-center text-white text-lg font-bold"
+          >
+            <img
+              src="img/Logo da Ods 4.jpg"
+              alt="Logo da Ods 4 Educação de Qualidade"
+            />
+          </div>
+          <span class="text-xl font-semibold text-gray-800 hidden sm:block"
+            >ODS 4 | Educação de Qualidade</span
+          >
+        </div>
+        <div class="menu space-x-4 flex">
+          <a
+            href="#sobre"
+            class="text-gray-600 hover:text-ods-blue transition duration-150 font-medium"
+            >Sobre</a
+          >
+          <a
+            href="#metas"
+            class="text-gray-600 hover:text-ods-blue transition duration-150 font-medium"
+            >Metas</a
+          >
+          <a
+            href="#acao"
+            class="text-gray-600 hover:text-ods-blue transition duration-150 font-medium"
+            >Como Ajudar</a
+          >
+        </div>
       </div>
     </header>
 
     <!-- Conteúdo Principal -->
-    <main id="main" class="principal">
-      <!-- Hero -->
-      <div class="bloco-hero">
-        <img
-          src="Educação de Qualidade.jpg"
-          alt="Banner Educação de Qualidade"
-          class="banner-img"
-        />
-        <h2>Educação de Qualidade para Todos</h2>
-        <p>
-          O ODS 4 busca garantir educação inclusiva, equitativa e de qualidade
-          para todos até 2030.
+    <main id="main" class="principal max-w-6xl mx-auto px-4 py-8 md:py-16">
+      <!-- Hero Section -->
+      <section class="mb-16 bg-white rounded-xl shadow-2xl overflow-hidden">
+        <div class="bloco-hero relative">
+          <!-- Banner de fundo adaptado do seu código -->
+          <img
+            src="img/Educação de Qualidade.jpg"
+            alt="Banner Educação de Qualidade"
+          />
+
+          <div
+            class="absolute inset-0 bg-black/40 flex flex-col justify-end items-center text-center p-4 pb-8"
+          >
+            <!-- BOTÃO CTA (VERMELHO/LARANJADO) para ACENTO -->
+            <a
+              href="#metas"
+              class="botao-cta cta-bg cta-hover text-white font-bold py-3 px-8 rounded-full shadow-xl transition duration-300 transform hover:scale-105"
+            >
+              Conhecer as Principais Metas
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção 0: Sobre a ODS 4 (NOVA SEÇÃO) -->
+      <section id="sobre" class="bloco-contexto mb-16 pt-10">
+        <div
+          class="bg-white p-6 md:p-10 rounded-xl shadow-xl border-b-4 ods-4-border"
+        >
+          <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            📚 O Contexto Global da Educação de Qualidade
+          </h3>
+          <p class="text-lg text-gray-700 leading-relaxed">
+            A Educação de Qualidade (ODS 4) é fundamental para alcançar todos os
+            outros Objetivos de Desenvolvimento Sustentável. Ela representa a
+            convicção de que o acesso ao conhecimento e à formação é a
+            ferramenta mais poderosa para tirar as pessoas da pobreza, promover
+            a saúde, garantir a igualdade de gênero e construir sociedades mais
+            pacíficas e sustentáveis.
+          </p>
+          <p class="text-lg text-gray-700 leading-relaxed mt-4">
+            Priorizar a educação significa investir no futuro do planeta e no
+            potencial de cada indivíduo.
+          </p>
+        </div>
+      </section>
+
+      <!-- Seção de Metas (ODS 4) - Usando Acordeão JS -->
+      <section id="metas" class="bloco-conteudo mb-16 pt-10">
+        <h3
+          class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 border-b-4 ods-4-border pb-3"
+        >
+          5 Principais Metas do ODS 4
+        </h3>
+        <p class="text-lg text-gray-600 mb-8">
+          Conheça as metas mais importantes para transformar a educação:
         </p>
-        <a href="#metas" class="botao-cta">Conhecer as Principais Metas</a>
-      </div>
 
-      <!-- Metas -->
-      <div id="metas" class="bloco-conteudo">
-        <h3>5 Principais Metas do ODS 4</h3>
-        <p>Conheça as metas mais importantes para transformar a educação:</p>
-
-        <div class="grid-metas">
-          <!-- Meta 1 -->
-          <div class="card-meta">
-            <details>
-              <summary><span>1. Educação Infantil</span></summary>
+        <div
+          class="grid-metas grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <!-- Meta 1: Educação Infantil -->
+          <div class="card-meta bg-white rounded-xl shadow-lg overflow-hidden">
+            <button
+              class="w-full text-left p-5 flex justify-between items-center bg-indigo-50 hover:bg-indigo-100 transition duration-200"
+              onclick="toggleAccordion(this)"
+            >
+              <span
+                class="text-xl font-semibold text-gray-800 flex items-center"
+              >
+                👶 1. Educação Infantil
+              </span>
+              <svg
+                class="w-6 h-6 transform accordion-icon transition duration-300 rotate-0 text-ods-blue"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            <div class="accordion-content p-5 text-gray-700 overflow-hidden">
+              <!-- Imagem com proporção 600x300 (2:1) - URL atualizada -->
               <img
                 src="img/Crianças na Creche.jpg"
                 alt="Crianças brincando e aprendendo"
-                class="img-detalhe"
+                class="img-detalhe w-full h-auto rounded-lg mb-3 shadow-md"
+                loading="lazy"
               />
-              <p class="saiba-mais">
+              <p class="explicacao my-3">
+                Garantir acesso a creches e pré-escolas de qualidade para todas
+                as crianças.
+              </p>
+              <p class="exemplos italic text-sm text-gray-500 mb-4">
+                Meta: Todas as crianças com acesso à educação desde cedo.
+              </p>
+              <p class="saiba-mais text-sm">
                 <a
                   href="https://oglobo.globo.com/rio/bairros/a-creche-como-primeiro-passo-na-educacao-basica-6549203"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >Educação Infantil no Brasil</a
+                  class="ods-4-text font-medium hover:underline"
                 >
+                  Saiba mais: Educação Infantil no Brasil
+                </a>
               </p>
-              <p class="explicacao">
-                Garantir acesso a creches e pré-escolas de qualidade para todas
-                as crianças.
-              </p>
-              <p class="exemplos">
-                Meta: Todas as crianças com acesso à educação desde cedo.
-              </p>
-            </details>
+            </div>
           </div>
 
-          <!-- Meta 2 -->
-          <div class="card-meta">
-            <details>
-              <summary><span>2. Educação Básica de Qualidade</span></summary>
+          <!-- Meta 2: Educação Básica de Qualidade -->
+          <div class="card-meta bg-white rounded-xl shadow-lg overflow-hidden">
+            <button
+              class="w-full text-left p-5 flex justify-between items-center bg-indigo-50 hover:bg-indigo-100 transition duration-200"
+              onclick="toggleAccordion(this)"
+            >
+              <span
+                class="text-xl font-semibold text-gray-800 flex items-center"
+              >
+                📚 2. Educação Básica de Qualidade
+              </span>
+              <svg
+                class="w-6 h-6 transform accordion-icon transition duration-300 rotate-0 text-ods-blue"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            <div class="accordion-content p-5 text-gray-700 overflow-hidden">
+              <!-- Imagem com proporção 600x300 (2:1) - URL atualizada -->
               <img
                 src="img/Jovens Estudando.jpg"
                 alt="Estudantes no Ensino Básico"
-                class="img-detalhe"
+                class="img-detalhe w-full h-auto rounded-lg mb-3 shadow-md"
+                loading="lazy"
               />
-              <p class="saiba-mais">
+              <p class="explicacao my-3">
+                Garantir que todas as crianças completem o ensino fundamental e
+                médio gratuitamente, com aprendizado de qualidade.
+              </p>
+              <p class="exemplos italic text-sm text-gray-500 mb-4">
+                Meta: Reduzir a evasão escolar e melhorar o desempenho dos
+                alunos.
+              </p>
+              <p class="saiba-mais text-sm">
                 <a
                   href="https://www.poder360.com.br/educacao/quase-10-milhoes-de-jovens-sem-ensino-basico-largaram-a-escola/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >Jovens no Ensino Médio</a
+                  class="ods-4-text font-medium hover:underline"
                 >
+                  Saiba mais: Jovens no Ensino Médio
+                </a>
               </p>
-              <p class="explicacao">
-                Garantir que todas as crianças completem o ensino fundamental e
-                médio gratuitamente, com aprendizado de qualidade.
-              </p>
-              <p class="exemplos">
-                Meta: Reduzir a evasão escolar e melhorar o desempenho dos
-                alunos.
-              </p>
-            </details>
+            </div>
           </div>
 
-          <!-- Meta 3 -->
-          <div class="card-meta">
-            <details>
-              <summary><span>3. Habilidades para o Trabalho</span></summary>
+          <!-- Meta 3: Habilidades para o Trabalho -->
+          <div class="card-meta bg-white rounded-xl shadow-lg overflow-hidden">
+            <button
+              class="w-full text-left p-5 flex justify-between items-center bg-indigo-50 hover:bg-indigo-100 transition duration-200"
+              onclick="toggleAccordion(this)"
+            >
+              <span
+                class="text-xl font-semibold text-gray-800 flex items-center"
+              >
+                🛠️ 3. Habilidades para o Trabalho
+              </span>
+              <svg
+                class="w-6 h-6 transform accordion-icon transition duration-300 rotate-0 text-ods-blue"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            <!-- A tag </svg> duplicada foi removida daqui! (Originalmente na linha 325) -->
+            <div class="accordion-content p-5 text-gray-700 overflow-hidden">
+              <!-- Imagem com proporção 600x300 (2:1) - URL atualizada -->
               <img
-                src="img/Sala de Informática.jpeg"
+                src="img/Jovens na Sala de Informática.webp"
                 alt="Jovens aprendendo informática"
-                class="img-detalhe"
+                class="img-detalhe w-full h-auto rounded-lg mb-3 shadow-md"
+                loading="lazy"
               />
-              <p class="saiba-mais">
+              <p class="explicacao my-3">
+                Preparar jovens e adultos com habilidades técnicas e
+                profissionais para emprego e empreendedorismo.
+              </p>
+              <p class="exemplos italic text-sm text-gray-500 mb-4">
+                Meta: Aumentar o número de pessoas com habilidades relevantes
+                para o mercado.
+              </p>
+              <p class="saiba-mais text-sm">
                 <a
                   href="https://www.institutoalgar.org.br/nativos-do-mundo-digital-jovens-ainda-necessitam-de-formacao-em-informatica-basica/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >Qualificação Profissional no Brasil</a
+                  class="ods-4-text font-medium hover:underline"
                 >
+                  Saiba mais: Qualificação Profissional no Brasil
+                </a>
               </p>
-              <p class="explicacao">
-                Preparar jovens e adultos com habilidades técnicas e
-                profissionais para emprego e empreendedorismo.
-              </p>
-              <p class="exemplos">
-                Meta: Aumentar o número de pessoas com habilidades relevantes
-                para o mercado.
-              </p>
-            </details>
+            </div>
           </div>
 
-          <!-- Meta 4 -->
-          <div class="card-meta">
-            <details>
-              <summary><span>4. Igualdade de Acesso</span></summary>
+          <!-- Meta 4: Igualdade de Acesso -->
+          <div class="card-meta bg-white rounded-xl shadow-lg overflow-hidden">
+            <button
+              class="w-full text-left p-5 flex justify-between items-center bg-indigo-50 hover:bg-indigo-100 transition duration-200"
+              onclick="toggleAccordion(this)"
+            >
+              <span
+                class="text-xl font-semibold text-gray-800 flex items-center"
+              >
+                ⚖️ 4. Igualdade de Acesso
+              </span>
+              <svg
+                class="w-6 h-6 transform accordion-icon transition duration-300 rotate-0 text-ods-blue"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            <div class="accordion-content p-5 text-gray-700 overflow-hidden">
+              <!-- Imagem com proporção 600x300 (2:1) - URL atualizada -->
               <img
                 src="img/Igualdade nas Escolas.webp"
                 alt="Alunos diversos em sala de aula"
-                class="img-detalhe"
+                class="img-detalhe w-full h-auto rounded-lg mb-3 shadow-md"
+                loading="lazy"
               />
-              <p class="saiba-mais">
+              <p class="explicacao my-3">
+                Eliminar desigualdades e garantir acesso igualitário à educação
+                para grupos vulneráveis.
+              </p>
+              <p class="exemplos italic text-sm text-gray-500 mb-4">
+                Meta: Educação inclusiva para todos, sem discriminação.
+              </p>
+              <p class="saiba-mais text-sm">
                 <a
                   href="https://www.cartacapital.com.br/educacao/como-trabalhar-a-igualdade-de-genero-na-escola/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >Educação Inclusiva no Brasil</a
+                  class="ods-4-text font-medium hover:underline"
                 >
+                  Saiba mais: Educação Inclusiva no Brasil
+                </a>
               </p>
-              <p class="explicacao">
-                Eliminar desigualdades e garantir acesso igualitário à educação
-                para grupos vulneráveis.
-              </p>
-              <p class="exemplos">
-                Meta: Educação inclusiva para todos, sem discriminação.
-              </p>
-            </details>
+            </div>
           </div>
 
-          <!-- Meta 5 -->
-          <div class="card-meta">
-            <details>
-              <summary><span>5. Professores Qualificados</span></summary>
+          <!-- Meta 5: Professores Qualificados -->
+          <div class="card-meta bg-white rounded-xl shadow-lg overflow-hidden">
+            <button
+              class="w-full text-left p-5 flex justify-between items-center bg-indigo-50 hover:bg-indigo-100 transition duration-200"
+              onclick="toggleAccordion(this)"
+            >
+              <span
+                class="text-xl font-semibold text-gray-800 flex items-center"
+              >
+                🧑‍🏫 5. Professores Qualificados
+              </span>
+              <svg
+                class="w-6 h-6 transform accordion-icon transition duration-300 rotate-0 text-ods-blue"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            <div class="accordion-content p-5 text-gray-700 overflow-hidden">
+              <!-- Imagem com proporção 600x300 (2:1) - URL atualizada -->
               <img
                 src="img/professor-de-sucesso-lideranca-em-sala-de-aula-cpt.jpg"
                 alt="Professor em sala de aula"
-                class="img-detalhe"
+                class="img-detalhe w-full h-auto rounded-lg mb-3 shadow-md"
+                loading="lazy"
               />
-              <p class="saiba-mais">
+              <p class="explicacao my-3">
+                Aumentar o número de professores qualificados e melhorar suas
+                condições de trabalho.
+              </p>
+              <p class="exemplos italic text-sm text-gray-500 mb-4">
+                Meta: Valorização e capacitação contínua dos professores.
+              </p>
+              <p class="saiba-mais text-sm">
                 <a
                   href="https://www.cpt.com.br/dicas-cursos-cpt/professor-de-sucesso-lideranca-em-sala-de-aula"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >Valorização dos Professores</a
+                  class="ods-4-text font-medium hover:underline"
                 >
+                  Saiba mais: Valorização dos Professores
+                </a>
               </p>
-              <p class="explicacao">
-                Aumentar o número de professores qualificados e melhorar suas
-                condições de trabalho.
-              </p>
-              <p class="exemplos">
-                Meta: Valorização e capacitação contínua dos professores.
-              </p>
-            </details>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Bloco de Dados -->
-      <div id="desafios" class="bloco-dados">
-        <h3>📊 Desafios da Educação no Brasil</h3>
-        <div class="caixas-dados">
-          <div class="caixa-stat">
-            <span>29%</span>
-            <p>da População é Analfabeta Funcional</p>
-            <p class="saiba-mais">
+      <!-- Bloco de Dados e Desafios (Atualizado) -->
+      <section
+        id="desafios"
+        class="bloco-dados bg-white p-6 md:p-10 rounded-xl shadow-2xl mb-16 border-t-8 ods-4-border pt-10"
+      >
+        <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8">
+          📊 Desafios da Educação no Brasil
+        </h3>
+        <div
+          class="caixas-dados grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          <!-- Stat 1: Analfabetismo Funcional -->
+          <div
+            class="caixa-stat bg-indigo-50 p-6 rounded-lg text-center shadow-inner col-span-1 lg:col-span-2"
+          >
+            <span class="text-5xl font-extrabold ods-4-text block mb-2"
+              >29%</span
+            >
+            <p class="text-lg font-semibold text-gray-700">
+              da População é Analfabeta Funcional
+            </p>
+            <p class="saiba-mais mt-2 text-sm">
               <a
                 href="https://brasilescola.uol.com.br/noticias/pesquisa-aponta-que-29-dos-brasileiros-sao-analfabetos-funcionais-saiba-o-que-e-analfabetismo-funcional/3132298.html"
                 target="_blank"
                 rel="noopener noreferrer"
-                >Analfabetismo Funcional</a
+                class="ods-4-text hover:underline"
               >
+                Saiba mais
+              </a>
             </p>
           </div>
 
-          <div class="caixa-stat">
-            <span>1,1 Milhão+</span>
-            <p>Crianças e jovens fora da escola</p>
-            <p class="saiba-mais">
+          <!-- Stat 2: Crianças fora da escola -->
+          <div
+            class="caixa-stat bg-indigo-50 p-6 rounded-lg text-center shadow-inner col-span-1 lg:col-span-2"
+          >
+            <span class="text-5xl font-extrabold ods-4-text block mb-2"
+              >1,1 Milhão+</span
+            >
+            <p class="text-lg font-semibold text-gray-700">
+              Crianças e jovens fora da escola
+            </p>
+            <p class="saiba-mais mt-2 text-sm">
               <a
                 href="https://buscaativaescolar.org.br/temas/causas-da-exclusao-escolar"
                 target="_blank"
                 rel="noopener noreferrer"
-                >Crianças e Jovens Fora da Escola</a
+                class="ods-4-text hover:underline"
               >
+                Saiba mais
+              </a>
             </p>
           </div>
 
-          <!-- Gráficos dentro de caixas -->
-          <div class="caixa-imagem-dados">
-            <img
-              src="img/Mapa.webp"
-              alt="Gráfico Analfabetismo Funcional"
-              class="imagem-bloco-dados"
-            />
+          <!-- Bloco de Texto Explicativo -->
+          <div
+            class="col-span-full lg:col-span-2 bg-indigo-50 p-4 rounded-lg shadow-inner flex flex-col justify-center"
+          >
+            <h4 class="text-xl font-bold ods-4-text mb-2">
+              A Crise de Aprendizagem
+            </h4>
+            <p class="text-gray-700">
+              Estes dados mostram que o desafio não é apenas matricular os
+              alunos, mas garantir que eles aprendam efetivamente. A pandemia
+              agravou as disparidades, exigindo investimentos urgentes em
+              recuperação de aprendizagem e infraestrutura digital.
+            </p>
           </div>
-          <div class="caixa-imagem-dados">
+
+          <!-- Gráfico Consolidado (Placeholder) - Proporção atualizada para 16:9 -->
+          <div class="caixa-imagem-dados col-span-full lg:col-span-2">
             <img
               src="img/Jovens e Crianças fora da Escola por Faixa Etária.png"
-              alt="Gráfico de Jovens e Crianças fora da Escola"
-              class="imagem-bloco-dados"
+              alt="Gráfico de Comparação Evasão e Analfabetismo Funcional"
+              class="imagem-bloco-dados w-full h-auto rounded-lg shadow-md"
+              loading="lazy"
             />
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Bloco de Ação -->
-      <div id="acao" class="bloco-acao">
-        <h3>Como Podemos Ajudar Na Educação Hoje?</h3>
-        <ul class="lista-acao">
-          <li>
-            ✅ Apoie a educação local: Doe livros, materiais escolares ou seu
-            tempo como voluntário
+      <!-- Bloco de Ação (Dicas) -->
+      <section
+        id="acao"
+        class="bloco-acao bg-white p-6 md:p-10 rounded-xl shadow-2xl border-l-8 ods-4-border"
+      >
+        <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8">
+          Como Podemos Ajudar Na Educação Hoje?
+        </h3>
+        <ul class="lista-acao space-y-4 text-gray-700 text-lg">
+          <li class="flex items-start">
+            <span class="ods-4-text mr-3 text-2xl">✅</span>
+            <div>
+              <span class="font-bold block">Apoie a educação local:</span> Doe
+              livros, materiais escolares ou seu tempo como voluntário em ONGs e
+              escolas públicas.
+            </div>
           </li>
-          <li>
-            ✅ Incentive a educação: Ajude pessoas próximas a você que precisam
-            de apoio nos estudos
+
+          <li class="flex items-start">
+            <span class="ods-4-text mr-3 text-2xl">✅</span>
+            <div>
+              <span class="font-bold block">Incentive a educação:</span> Ajude
+              pessoas próximas a você que precisam de apoio nos estudos ou na
+              conclusão de etapas educacionais.
+            </div>
           </li>
-          <li>
-            ✅ Valorize os professores: Reconheça e apoie o trabalho dos
-            educadores
+
+          <li class="flex items-start">
+            <span class="ods-4-text mr-3 text-2xl">✅</span>
+            <div>
+              <span class="font-bold block">Valorize os professores:</span>
+              Reconheça e apoie o trabalho dos educadores, participando de
+              conselhos escolares e defendendo melhores condições de trabalho.
+            </div>
           </li>
         </ul>
-        <p class="saiba-mais">
-          Saiba mais:
+        <p class="saiba-mais mt-8 text-lg">
+          <span class="font-semibold text-gray-800">Saiba mais:</span>
           <a
             href="https://brasil.un.org/pt-br/sdgs/4"
             target="_blank"
             rel="noopener noreferrer"
-            >ODS 4 no site da ONU Brasil</a
+            class="ods-4-text hover:underline font-medium ml-2"
           >
+            ODS 4 no site da ONU Brasil
+          </a>
         </p>
-      </div>
+      </section>
     </main>
 
     <!-- Rodapé -->
-    <footer class="rodape">
+    <footer
+      class="rodape mt-12 py-6 text-center text-sm text-white ods-4-bg shadow-inner"
+    >
       <p>
         &copy; 2025 Projeto ODS 4 - Educação de Qualidade. Fonte: ONU | Agenda
         2030.
